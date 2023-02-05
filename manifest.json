@@ -1,18 +1,18 @@
 {
-  "id": "dev.replugged.PluginTemplate",
-  "name": "Plugin Template",
-  "description": "A plugin template",
+  "id": "dev.winner.useridreduxport",
+  "name": "UserIdRedux-port",
+  "description": "A shit port of useridredux by Arashiryuu",
   "author": {
-    "name": "replugged",
-    "discordID": "1000992611840049192",
-    "github": "replugged-org"
+    "name": "winner",
+    "discordID": "172716215817601026",
+    "github": "winneratwin"
   },
   "version": "1.0.0",
   "updater": {
     "type": "github",
-    "id": "replugged-org/plugin-template"
+    "id": "winneratwin/useridredux-port"
   },
-  "license": "MIT",
+  "license": "IDK",
   "type": "replugged-plugin",
-  "renderer": "src/index.ts"
+  "renderer": "src/index.tsx"
 }
