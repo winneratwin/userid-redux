@@ -1,3 +1,8 @@
+// TODO: insert passive aggressive comment about how asportnoy said
+// "Why not just your own class name to the element?" when i needed
+// dynamic stylesheets to programmatically change the theme when
+// discord updates and changes the class names.
+
 function getElement(e, baseElement = document) {
   if (e instanceof Node) return e;
   return baseElement.querySelector(e);

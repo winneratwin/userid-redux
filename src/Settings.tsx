@@ -53,13 +53,12 @@ export function Settings() {
   return (
     <div>
       <DropdownMenuItem
-        note="When to require hovering over the username to show pronouns."
+        note="Color of the tag. (needs reload to take effect)"
         options={DropdownSettings.colors}
         {...useDropdownSetting(cfg, "color")}>
         Color
       </DropdownMenuItem>
       <DropdownMenuItem
-        note="When to require hovering over the username to show pronouns."
         options={DropdownSettings.position}
         {...useDropdownSetting(cfg, "tagPosition")}>
         Tag position
