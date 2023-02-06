@@ -58,12 +58,12 @@ export function Settings() {
         {...useDropdownSetting(cfg, "color")}>
         Color
       </DropdownMenuItem>
-      <SwitchItem
-        note="When off, the tag will be to the left."
-        {...util.useSetting(cfg, "tagPosition")}
-        disabled>
+      <DropdownMenuItem
+        note="When to require hovering over the username to show pronouns."
+        options={DropdownSettings.position}
+        {...useDropdownSetting(cfg, "tagPosition")}>
         Tag position
-      </SwitchItem>
+      </DropdownMenuItem>
       <SwitchItem note="will show message date as hovertip." {...util.useSetting(cfg, "hoverTip")}>
         Show hovertip
       </SwitchItem>

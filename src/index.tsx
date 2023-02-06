@@ -1,6 +1,4 @@
-import { log } from "console";
 import { common, Injector, Logger, settings, webpack } from "replugged";
-import { theme } from "replugged/dist/types/addon";
 import { DefaultSettings } from "./constants";
 import { injectStyle, removeStyle } from "./theme_manager.tsx";
 import { style } from "./theme.tsx";
@@ -48,7 +46,8 @@ export async function start(): Promise<void> {
       },
     });
 
-    res?.props?.children[3]?.props?.children?.splice(pos === "beforebegin" ? 0 : 2, 0, tag);
+    // position of the tag can't be changed anymore
+    res?.props?.children[3]?.props?.children?.splice(cfg.get("tagPosition"), 0, tag);
 
     return res;
   });
