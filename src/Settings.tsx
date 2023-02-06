@@ -1,5 +1,5 @@
 import { cfg } from ".";
-import { webpack, util, components, common } from "replugged";
+import { common, components, util, webpack } from "replugged";
 const { SwitchItem } = components;
 const { React } = common;
 import { DropdownSettings } from "./constants.js";

@@ -1,7 +1,7 @@
 {
-  "name": "plugin-template",
-  "version": "1.0.0",
-  "description": "A plugin template",
+  "name": "UserIdRedux-port",
+  "version": "1.0.1",
+  "description": "A shit port of useridredux by Arashiryuu",
   "engines": {
     "node": ">=14.0.0"
   },

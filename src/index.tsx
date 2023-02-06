@@ -1,8 +1,8 @@
-import { common, Injector, Logger, settings, webpack } from "replugged";
+import { Injector, /*Logger,*/ common, settings, webpack } from "replugged";
 import { DefaultSettings } from "./constants";
 import { injectStyle, removeStyle } from "./theme_manager.tsx";
 import { style } from "./theme.tsx";
-import { getPos, Tag, WrapBoundary } from "./elements.tsx";
+import { Tag, WrapBoundary, getPos } from "./elements.tsx";
 
 import { Settings } from "./Settings";
 export { Settings };
@@ -10,7 +10,7 @@ export { Settings };
 const { React, toast } = common;
 
 const injector = new Injector();
-const logger = Logger.plugin("UserIdRedux");
+//const logger = Logger.plugin("UserIdRedux");
 
 // plugin id found in manifest.json
 let PLUGIN_ID = "dev.winner.useridreduxport";
@@ -31,7 +31,7 @@ export async function start(): Promise<void> {
     //const date = author.createdAt.toISOString();
     const date = args.message.timestamp.toISOString();
 
-    const { extraClass, pos } = getPos(cfg.get("tagPosition"));
+    const { extraClass } = getPos(cfg.get("tagPosition"));
 
     const tag = React.createElement(WrapBoundary(Tag), {
       id: author.id,
