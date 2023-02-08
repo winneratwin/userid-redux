@@ -1,69 +1,37 @@
-import { cfg } from ".";
-import { common, components, util, webpack } from "replugged";
-const { SwitchItem } = components;
-const { React } = common;
+import { cfg, logger, PLUGIN_ID } from ".";
+import { injectStyle, removeStyle } from "./theme_manager.tsx";
+import { components, util } from "replugged";
+import { style } from "./theme.tsx";
+const { SwitchItem, SelectItem } = components;
 import { DropdownSettings } from "./constants.js";
 
-const mod = webpack.getBySource(/.\.options,.=.\.placeholder/);
-const DropdownMenu = webpack.getFunctionBySource(/.\.options,.=.\.placeholder/, mod);
-
-function useDropdownSetting(settings, key) {
-  const initial = settings.get(key);
-  const [value, setValue] = React.useState(initial);
-
-  return {
-    value,
-    isSelected: (compareValue) => {
-      return compareValue === value;
-    },
-    onSelect: (newValue) => {
-      setValue(newValue);
-      settings.set(key, newValue);
-    },
-  };
-}
-
-function DropdownMenuItem(props) {
-  function serialize(value) {
-    return value;
-  } // not relevant but DropdownMenu calls it
-
-  // todo: this is bad and dumb and will break,
-  //  figure out how to mimic discord's settings stuff
-  const res = SwitchItem({
-    note: props.note,
-    children: props.children,
-  });
-
-  const switchItemElement = res?.props?.children?.[0]?.props?.children?.props?.children;
-  if (switchItemElement === undefined) return null;
-
-  switchItemElement[1] = (
-    <DropdownMenu
-      options={props.options}
-      isSelected={props.isSelected}
-      select={props.onSelect}
-      serialize={serialize}></DropdownMenu>
-  );
-
-  return res;
-}
-
 export function Settings() {
+  const { value: colorValue, onChange: colorOnChange } = util.useSetting(cfg, "color");
+  const { value: posValue, onChange: posOnChange } = util.useSetting(cfg, "tagPosition");
+
   return (
     <div>
-      <DropdownMenuItem
-        note="Color of the tag. (needs reload to take effect)"
+      <SelectItem
+        {...util.useSetting(cfg, "color")}
         options={DropdownSettings.colors}
-        {...useDropdownSetting(cfg, "color")}>
+        note="Color of the tag. (needs reload to take effect)"
+        value={colorValue}
+        onChange={(value) => {
+          colorOnChange(value);
+          injectStyle(PLUGIN_ID, style.replace(/{color}/, cfg.get("color")));
+        }}>
         Color
-      </DropdownMenuItem>
-      <DropdownMenuItem
+      </SelectItem>
+      <SelectItem
+        {...util.useSetting(cfg, "tagPosition")}
         options={DropdownSettings.position}
-        {...useDropdownSetting(cfg, "tagPosition")}>
+        value={posValue}
+        onChange={(value) => {
+          posOnChange(value);
+        }}>
         Tag position
-      </DropdownMenuItem>
-      <SwitchItem note="will show message date as hovertip." {...util.useSetting(cfg, "hoverTip")}>
+      </SelectItem>
+      <SwitchItem {...util.useSetting(cfg, "hoverTip")} note="will show message date as hovertip.">
         Show hovertip
       </SwitchItem>
     </div>

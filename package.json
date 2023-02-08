@@ -1,6 +1,6 @@
 {
   "name": "UserIdRedux-port",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A shit port of useridredux by Arashiryuu",
   "engines": {
     "node": ">=14.0.0"
@@ -33,4 +33,3 @@
     "typescript": "^4.8.4"
   }
 }
-

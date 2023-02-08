@@ -1,4 +1,4 @@
-import { Injector, /*Logger,*/ common, settings, webpack } from "replugged";
+import { Injector, Logger, common, settings, webpack } from "replugged";
 import { DefaultSettings } from "./constants";
 import { injectStyle, removeStyle } from "./theme_manager.tsx";
 import { style } from "./theme.tsx";
@@ -10,10 +10,12 @@ export { Settings };
 const { React, toast } = common;
 
 const injector = new Injector();
-//const logger = Logger.plugin("UserIdRedux");
+const logger = Logger.plugin("UserIdRedux");
+export { logger };
 
 // plugin id found in manifest.json
 let PLUGIN_ID = "dev.winner.useridreduxport";
+export { PLUGIN_ID };
 
 const cfg = await settings.init(PLUGIN_ID, DefaultSettings);
 export { cfg };
