@@ -37,13 +37,13 @@ const getTagElement = (props, classes) => {
     React.createElement("span", Object.assign(getTagProps(props, classes), props.hover && cProps));
 };
 
-const TooltipWrapper = webpack.getByProps("Colors", "Positions");
+const TooltipWrapper = webpack.getByProps("Colors");
 const getTagClasses = (props) => (Array.isArray(props.classes) ? props.classes : []);
 const Tag = (props) => {
   const classes = getTagClasses(props);
   if (!classes.includes("tagID")) classes.unshift("tagID");
   return React.createElement(TooltipWrapper, {
-    position: TooltipWrapper.Positions.TOP,
+    //position: TooltipWrapper.Positions.TOP,
     color: TooltipWrapper.Colors.PRIMARY,
     text: props.text,
     children: getTagElement(props, classes),
