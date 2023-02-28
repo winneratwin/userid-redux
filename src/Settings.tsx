@@ -1,5 +1,5 @@
-import { cfg, logger, PLUGIN_ID } from ".";
-import { injectStyle, removeStyle } from "./theme_manager.tsx";
+import { PLUGIN_ID, cfg } from ".";
+import { injectStyle } from "./theme_manager.tsx";
 import { components, util } from "replugged";
 import { style } from "./theme.tsx";
 const { SwitchItem, SelectItem } = components;

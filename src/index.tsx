@@ -1,4 +1,4 @@
-import { Injector, Logger, common, settings, webpack } from "replugged";
+import { Injector, common, settings, webpack } from "replugged";
 import { DefaultSettings } from "./constants";
 import { injectStyle, removeStyle } from "./theme_manager.tsx";
 import { style } from "./theme.tsx";
@@ -10,8 +10,6 @@ export { Settings };
 const { React, toast } = common;
 
 const injector = new Injector();
-const logger = Logger.plugin("UserIdRedux");
-export { logger };
 
 // plugin id found in manifest.json
 let PLUGIN_ID = "dev.winner.useridreduxport";
@@ -35,6 +33,7 @@ export async function start(): Promise<void> {
 
     const { extraClass } = getPos(cfg.get("tagPosition"));
 
+    // eslint-disable-next-line new-cap
     const tag = React.createElement(WrapBoundary(Tag), {
       id: author.id,
       key: `ChatUserID-${author.id}`,
@@ -42,7 +41,7 @@ export async function start(): Promise<void> {
       text: date,
       hover: cfg.get("hoverTip"),
       classes: [extraClass],
-      onDoubleClick: (e) => {
+      onDoubleClick: () => {
         DiscordNative.clipboard.copy(author.id);
         toast.toast("Copied to clipboard");
       },
