@@ -1,8 +1,8 @@
 import { Injector, common, settings, webpack } from "replugged";
 import { DefaultSettings } from "./constants";
-import { injectStyle, removeStyle } from "./theme_manager.tsx";
-import { style } from "./theme.tsx";
-import { Tag, WrapBoundary, getPos } from "./elements.tsx";
+import { injectStyle, removeStyle } from "./theme_manager";
+import { style } from "./theme";
+import { Tag, WrapBoundary, getPos } from "./elements";
 
 import { Settings } from "./Settings";
 export { Settings };
@@ -15,21 +15,37 @@ const injector = new Injector();
 let PLUGIN_ID = "dev.winner.useridreduxport";
 export { PLUGIN_ID };
 
-const cfg = await settings.init(PLUGIN_ID, DefaultSettings);
+interface SettingsType {
+  color: string;
+  tagPosition: number;
+  hoverTip: boolean;
+}
+const cfg = await settings.init<SettingsType>(PLUGIN_ID, DefaultSettings);
 export { cfg };
 
-export async function start(): Promise<void> {
-  injectStyle(PLUGIN_ID, style.replace(/{color}/, cfg.get("color")));
-  let mod = webpack.getBySource('"BADGES"');
+interface ArgsType {
+  message: {
+    author: {
+      id: string;
+      createdAt: Date;
+    };
+    timestamp: Date;
+  };
+}
 
-  injector.after(mod, "Z", ([args], res: React.ReactElement) => {
-    const { author } = args.message;
+export async function start(): Promise<void> {
+  injectStyle(PLUGIN_ID, style.replace(/{color}/, cfg.get("color") as string));
+  let mod = (await webpack.waitForModule(webpack.filters.bySource('"BADGES"'))) as any;
+
+  injector.after(mod, "Z", (args, res: React.ReactElement) => {
+    let args2 = args[0] as ArgsType;
+    const { author } = args2.message;
 
     //const date = author.createdAt.toString().replace(/\([\w\d].+\)/g, '').split(' ');
     //const gmt = date.pop();
 
     //const date = author.createdAt.toISOString();
-    const date = args.message.timestamp.toISOString();
+    const date = args2.message.timestamp.toISOString();
 
     const { extraClass } = getPos(cfg.get("tagPosition"));
 
@@ -42,6 +58,7 @@ export async function start(): Promise<void> {
       hover: cfg.get("hoverTip"),
       classes: [extraClass],
       onDoubleClick: () => {
+        const { DiscordNative } = window as any;
         DiscordNative.clipboard.copy(author.id);
         toast.toast("Copied to clipboard");
       },

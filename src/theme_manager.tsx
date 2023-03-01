@@ -3,12 +3,15 @@
 // dynamic stylesheets to programmatically change the theme when
 // discord updates and changes the class names.
 
-function getElement(e, baseElement = document) {
-  if (e instanceof Node) return e;
-  return baseElement.querySelector(e);
+function getElement(e: string, baseElement: any = document): Element {
+  return baseElement.querySelector(e) as Element;
 }
 
-function createElement(tag, options = {}, child = null) {
+function createElement(
+  tag: string,
+  options: { className?: string; id?: string; target?: any } = {},
+  child = null,
+) {
   const { className, id, target } = options;
   const element = document.createElement(tag);
   if (className) element.className = className;
@@ -18,17 +21,17 @@ function createElement(tag, options = {}, child = null) {
   return element;
 }
 
-function escapeID(id) {
+function escapeID(id: string): string {
   return id.replace(/^[^a-z]+|[^\w-]+/gi, "-");
 }
 
-function getStyleFolder() {
+function getStyleFolder(): Element {
   return (
     getElement(`rp-styles`, document.head) || createElement("rp-styles", { target: document.head })
   );
 }
 
-function injectStyle(id, css) {
+function injectStyle(id: string, css: string) {
   let styleFolder = getStyleFolder();
   id = escapeID(id);
   const styleelement = getElement(`#${id}`, styleFolder) || createElement("style", { id });
@@ -36,7 +39,7 @@ function injectStyle(id, css) {
   styleFolder.append(styleelement);
 }
 
-function removeStyle(id) {
+function removeStyle(id: string) {
   let styleFolder = getStyleFolder();
   id = escapeID(id);
   const exists = getElement(`#${id}`, styleFolder);

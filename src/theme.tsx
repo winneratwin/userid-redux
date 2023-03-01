@@ -1,5 +1,5 @@
 import { webpack } from "replugged";
-const MessageClasses = {
+const MessageClasses: any = {
   ...webpack.getByProps("message", "groupStart"),
   ...webpack.getByProps("compact", "cozy", "username"),
   ...webpack.getByProps("username", "zalgo", "timestamp", "header"),

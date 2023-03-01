@@ -2,10 +2,13 @@ import { common, webpack } from "replugged";
 const { React } = common;
 
 const ErrorBoundary = class ErrorBoundary extends React.Component {
-  constructor(props) {
+  props: any;
+  constructor(props: any) {
     super(props);
     this.state = { hasError: false };
   }
+  state: { hasError: boolean };
+
   render() {
     if (this.state.hasError)
       return React.createElement(
@@ -18,28 +21,28 @@ const ErrorBoundary = class ErrorBoundary extends React.Component {
     return this.props.children;
   }
 };
-const WrapBoundary = (Original) => (props) =>
+const WrapBoundary = (Original: any) => (props: any) =>
   React.createElement(ErrorBoundary, null, React.createElement(Original, props));
 
-const getTagProps = (props, classes) => ({
+const getTagProps = (props: any, classes: string[]) => ({
   className: `${props.hover ? "tooltip-wrapper" : ""} ${classes.join(" ")}`.trim(),
   children: [
     React.createElement("span", {
       className: "tag",
       children: [props.id],
-      onDoubleClick: (e) => props.onDoubleClick(e),
+      onDoubleClick: (e: any) => props.onDoubleClick(e),
     }),
   ],
 });
 
-const getTagElement = (props, classes) => {
-  return (cProps) =>
+const getTagElement = (props: any, classes: any) => {
+  return (cProps: any) =>
     React.createElement("span", Object.assign(getTagProps(props, classes), props.hover && cProps));
 };
 
-const TooltipWrapper = webpack.getByProps("Colors");
-const getTagClasses = (props) => (Array.isArray(props.classes) ? props.classes : []);
-const Tag = (props) => {
+const TooltipWrapper: any = webpack.getByProps("Colors");
+const getTagClasses = (props: any) => (Array.isArray(props.classes) ? props.classes : []);
+const Tag = (props: any) => {
   const classes = getTagClasses(props);
   if (!classes.includes("tagID")) classes.unshift("tagID");
   return React.createElement(TooltipWrapper, {
@@ -50,7 +53,7 @@ const Tag = (props) => {
   });
 };
 
-function getPos(config) {
+function getPos(config: any) {
   const value = !config;
   return {
     extraClass: value ? "before" : "after",

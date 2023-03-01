@@ -1,7 +1,7 @@
 import { PLUGIN_ID, cfg } from ".";
-import { injectStyle } from "./theme_manager.tsx";
+import { injectStyle } from "./theme_manager";
 import { components, util } from "replugged";
-import { style } from "./theme.tsx";
+import { style } from "./theme";
 const { SwitchItem, SelectItem } = components;
 import { DropdownSettings } from "./constants.js";
 
@@ -16,18 +16,18 @@ export function Settings() {
         options={DropdownSettings.colors}
         note="Color of the tag. (needs reload to take effect)"
         value={colorValue}
-        onChange={(value) => {
+        onChange={(value: string) => {
           colorOnChange(value);
-          injectStyle(PLUGIN_ID, style.replace(/{color}/, cfg.get("color")));
+          injectStyle(PLUGIN_ID, style.replace(/{color}/, cfg.get("color") as string));
         }}>
         Color
       </SelectItem>
       <SelectItem
         {...util.useSetting(cfg, "tagPosition")}
-        options={DropdownSettings.position}
-        value={posValue}
+        options={DropdownSettings.position as any}
+        value={posValue as any}
         onChange={(value) => {
-          posOnChange(value);
+          posOnChange(Number(value));
         }}>
         Tag position
       </SelectItem>
