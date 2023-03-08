@@ -31,8 +31,15 @@ export function Settings() {
         }}>
         Tag position
       </SelectItem>
-      <SwitchItem {...util.useSetting(cfg, "hoverTip")} note="will show message date as hovertip.">
+      <SwitchItem
+        {...util.useSetting(cfg, "hoverTip")}
+        note="will show message/author creation date as hovertip.">
         Show hovertip
+      </SwitchItem>
+      <SwitchItem
+        {...util.useSetting(cfg, "authorCreatedAt")}
+        note="will show author's account creation date instead of message's timestamp.">
+        Show author's account creation date
       </SwitchItem>
     </div>
   );

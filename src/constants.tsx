@@ -2,6 +2,7 @@ const DefaultSettings = Object.freeze({
   color: "#798AED",
   tagPosition: 1,
   hoverTip: true,
+  authorCreatedAt: true,
 });
 
 const DropdownSettings = Object.freeze({
