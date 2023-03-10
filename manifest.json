@@ -7,7 +7,7 @@
     "discordID": "172716215817601026",
     "github": "winneratwin"
   },
-  "version": "1.0.7",
+  "version": "1.0.8",
   "updater": {
     "type": "github",
     "id": "winneratwin/useridredux-port"
