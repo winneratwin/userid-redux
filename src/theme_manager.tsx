@@ -14,8 +14,8 @@ function getElement(e: any, baseElement?: any) {
 
 function createElement(
   tag: string,
-  options: { className?: string; id?: string; target?: any } = {},
   child?: any,
+  options: { className?: string; id?: string; target?: any } = {},
 ) {
   // destructure options
   const { className, id, target } = options;
