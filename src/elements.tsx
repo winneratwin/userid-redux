@@ -57,7 +57,7 @@ const getTagElement = (props: any, classes: any) => {
 };
 
 // get the tooltip wrapper
-const TooltipWrapper: any = webpack.getByProps("Colors");
+const TooltipWrapper: any = webpack.getByProps("Colors", "defaultProps");
 
 // get the classes from the props
 const getTagClasses = (props: any) => (Array.isArray(props.classes) ? props.classes : []);

@@ -14,11 +14,10 @@ function getElement(e: any, baseElement?: any) {
 
 function createElement(
   tag: string,
-  child?: any,
-  options: { className?: string; id?: string; target?: any } = {},
+  options: { className?: string; id?: string; target?: any; child?: any } = {},
 ) {
   // destructure options
-  const { className, id, target } = options;
+  const { className, id, target, child } = options;
 
   // create element
   const element = document.createElement(tag);
