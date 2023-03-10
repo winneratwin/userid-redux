@@ -4,9 +4,6 @@
 // discord updates and changes the class names.
 
 function getElement(e: any, baseElement?: any) {
-  // debug parameter
-  console.log(e, baseElement);
-
   // if e is already an element, return it
   if (e instanceof Node) return e;
   // set baseElement to document if not specified
@@ -22,8 +19,6 @@ function createElement(
 ) {
   // destructure options
   const { className, id, target } = options;
-
-  console.log(tag, options, child);
 
   // create element
   const element = document.createElement(tag);
