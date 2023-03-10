@@ -3,7 +3,12 @@
 // dynamic stylesheets to programmatically change the theme when
 // discord updates and changes the class names.
 
-function getElement(e: string, baseElement?: any) {
+function getElement(e: any, baseElement?: any) {
+  // debug parameter
+  console.log(e, baseElement);
+
+  // if e is already an element, return it
+  if (e instanceof Node) return e;
   // set baseElement to document if not specified
   baseElement = baseElement || document;
   // return element
@@ -13,10 +18,12 @@ function getElement(e: string, baseElement?: any) {
 function createElement(
   tag: string,
   options: { className?: string; id?: string; target?: any } = {},
-  child = null,
+  child?: any,
 ) {
   // destructure options
   const { className, id, target } = options;
+
+  console.log(tag, options, child);
 
   // create element
   const element = document.createElement(tag);
