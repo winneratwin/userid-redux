@@ -49,7 +49,7 @@ export async function start(): Promise<void> {
   let mod = (await webpack.waitForModule(webpack.filters.bySource('"BADGES"'))) as any;
 
   // inject the code
-  injector.after(mod, "Z", (args, res: React.ReactElement) => {
+  injector.after(mod, "default", (args, res: React.ReactElement) => {
     let args2 = args[0] as ArgsType;
     const { author } = args2.message;
 

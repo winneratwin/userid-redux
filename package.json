@@ -1,19 +1,21 @@
 {
   "name": "UserIdRedux-port",
-  "version": "1.0.3",
+  "version": "1.0.9",
   "description": "A shit port of useridredux by Arashiryuu",
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=20.0.0",
+    "pnpm": ">=8.0.0"
   },
   "scripts": {
     "build": "replugged build plugin",
     "watch": "replugged build plugin --watch",
     "bundle": "replugged bundle plugin",
+    "release": "replugged release",
     "check": "tsc --noEmit",
     "prettier:check": "prettier ./src --check",
-    "eslint:check": "eslint ./src/*",
+    "eslint:check": "eslint ./src",
     "prettier:fix": "prettier ./src --write",
-    "eslint:fix": "eslint ./src/* --fix",
+    "eslint:fix": "eslint ./src --fix",
     "lint": "pnpm run prettier:check && pnpm run eslint:check && pnpm run check",
     "lint:fix": "pnpm run prettier:fix && pnpm run eslint:fix"
   },
@@ -21,22 +23,16 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^18.11.2",
+    "@types/node": "^20.11.0",
     "@types/react": "^18.0.28",
-    "@typescript-eslint/eslint-plugin": "^5.40.1",
-    "@typescript-eslint/parser": "^5.40.1",
-    "eslint": "^8.25.0",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
+    "eslint": "^8.56.0",
     "eslint-config-dmitmel": "github:dmitmel/eslint-config-dmitmel",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-react": "^7.31.10",
-    "prettier": "^2.8.1",
-    "replugged": "4.0.0-beta0.25",
-    "typescript": "^4.8.4"
-  },
-  "dependencies": {
-    "and": "^0.0.3",
-    "build": "^0.1.4",
-    "pnpm": "^7.28.0",
-    "run": "^1.4.0"
+    "eslint-plugin-react": "^7.33.2",
+    "prettier": "^3.2.2",
+    "replugged": "^4.7.7",
+    "typescript": "^5.3.3"
   }
 }
