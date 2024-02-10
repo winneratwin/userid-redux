@@ -47,9 +47,10 @@ export async function start(): Promise<void> {
 
   // get the module
   let mod = (await webpack.waitForModule(webpack.filters.bySource('"BADGES"'))) as any;
-
+  let modkey = webpack.getFunctionKeyBySource(mod, /renderRemixTag/);
+  
   // inject the code
-  injector.after(mod, "default", (args, res: React.ReactElement) => {
+  injector.after(mod, modkey, (args, res: React.ReactElement) => {
     let args2 = args[0] as ArgsType;
     const { author } = args2.message;
 
